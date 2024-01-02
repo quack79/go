@@ -16,7 +16,7 @@ import (
 )
 
 func main() {
-	pflag.String("addr", ":8067", "default bind address")
+	pflag.String("addr", ":80", "default bind address")
 	pflag.Bool("admin", false, "allow admin-level requests")
 	pflag.String("version", "", "version string")
 	pflag.String("backend", "leveldb", "backing store to use. 'leveldb' and 'firestore' currently supported.")

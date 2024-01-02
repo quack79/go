@@ -48,7 +48,7 @@ func templateFromAssetFn(fn func() (*asset, error)) (*template.Template, error) 
 func getDefault(backend backend.Backend, w http.ResponseWriter, r *http.Request) {
 	p := parseName("/", r.URL.Path)
 	if p == "" {
-		http.Redirect(w, r, "/edit/", http.StatusTemporaryRedirect)
+		http.Redirect(w, r, "/about/", http.StatusTemporaryRedirect)
 		return
 	}
 
@@ -94,7 +94,7 @@ func getLinks(backend backend.Backend, w http.ResponseWriter, r *http.Request) {
 // web requests.
 func ListenAndServe(backend backend.Backend) error {
 	addr := viper.GetString("addr")
-	admin := viper.GetBool("admin")
+	admin := viper.GetBool("adm")
 	version := viper.GetString("version")
 	host := viper.GetString("host")
 
@@ -112,13 +112,16 @@ func ListenAndServe(backend backend.Backend) error {
 	mux.HandleFunc("/edit/", func(w http.ResponseWriter, r *http.Request) {
 		p := parseName("/edit/", r.URL.Path)
 
-		// if this is a banned name, just redirect to the local URI. That'll show em.
+		// If this is a banned name, just redirect to the local URI.
 		if isBannedName(p) {
 			http.Redirect(w, r, fmt.Sprintf("/%s", p), http.StatusTemporaryRedirect)
 			return
 		}
 
 		serveAsset(w, r, "edit.html")
+	})
+	mux.HandleFunc("/about/", func(w http.ResponseWriter, r *http.Request) {
+		serveAsset(w, r, "about.html")
 	})
 	mux.HandleFunc("/links/", func(w http.ResponseWriter, r *http.Request) {
 		getLinks(backend, w, r)
@@ -132,10 +135,8 @@ func ListenAndServe(backend backend.Backend) error {
 	mux.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "👍")
 	})
-
-	// TODO(knorton): Remove the admin handler.
 	if admin {
-		mux.Handle("/admin/", &adminHandler{backend})
+		mux.Handle("/adm/", &adminHandler{backend})
 	}
 
 	return http.ListenAndServe(addr, mux)

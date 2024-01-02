@@ -20,10 +20,10 @@ const (
 )
 
 var (
-	errInvalidURL        = errors.New("Invalid URL")
-	errRedirectLoop      = errors.New(" I'm sorry, Dave. I'm afraid I can't do that")
+	errInvalidURL   = errors.New("Invalid URL")
+	errRedirectLoop = errors.New("I'm sorry, Dave. I'm afraid I can't do that")
 	genURLPrefix    byte = ':'
-	postGenCursor        = []byte{genURLPrefix + 1}
+	postGenCursor   = []byte{genURLPrefix + 1}
 )
 
 // A very simple encoding of numeric ids. This is simply a base62 encoding
@@ -83,17 +83,17 @@ func apiURLPost(backend backend.Backend, host string, w http.ResponseWriter, r *
 	}
 
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		writeJSONError(w, "invalid json", http.StatusBadRequest)
+		writeJSONError(w, "Invalid json", http.StatusBadRequest)
 		return
 	}
 
 	if req.URL == "" {
-		writeJSONError(w, "url required", http.StatusBadRequest)
+		writeJSONError(w, "URL required", http.StatusBadRequest)
 		return
 	}
 
 	if isBannedName(p) {
-		writeJSONError(w, "name cannot be used", http.StatusBadRequest)
+		writeJSONError(w, "This name is a reserved value, please choose another.", http.StatusBadRequest)
 		return
 	}
 
@@ -132,7 +132,7 @@ func apiURLGet(backend backend.Backend, host string, w http.ResponseWriter, r *h
 	p := parseName("/api/url/", r.URL.Path)
 
 	if p == "" {
-		writeJSONError(w, "no name given", http.StatusBadRequest)
+		writeJSONError(w, "No name given", http.StatusBadRequest)
 		return
 	}
 
@@ -155,7 +155,7 @@ func apiURLDelete(backend backend.Backend, w http.ResponseWriter, r *http.Reques
 	p := parseName("/api/url/", r.URL.Path)
 
 	if p == "" {
-		writeJSONError(w, "name required", http.StatusBadRequest)
+		writeJSONError(w, "Name required", http.StatusBadRequest)
 		return
 	}
 
@@ -205,25 +205,25 @@ func parseBool(v string, def bool) (bool, error) {
 		return false, nil
 	}
 
-	return false, errors.New("invalid boolean value")
+	return false, errors.New("Invalid boolean value")
 }
 
 func apiURLsGet(backend backend.Backend, host string, w http.ResponseWriter, r *http.Request) {
 	c, err := parseCursor(r.FormValue("cursor"))
 	if err != nil {
-		writeJSONError(w, "invalid cursor value", http.StatusBadRequest)
+		writeJSONError(w, "Invalid cursor value", http.StatusBadRequest)
 		return
 	}
 
 	lim, err := parseInt(r.FormValue("limit"), 100)
 	if err != nil || lim <= 0 || lim > 10000 {
-		writeJSONError(w, "invalid limit value", http.StatusBadRequest)
+		writeJSONError(w, "Invalid limit value", http.StatusBadRequest)
 		return
 	}
 
 	ig, err := parseBool(r.FormValue("include-generated-names"), false)
 	if err != nil {
-		writeJSONError(w, "invalid include-generated-names value", http.StatusBadRequest)
+		writeJSONError(w, "Invalid include-generated-names value", http.StatusBadRequest)
 		return
 	}
 

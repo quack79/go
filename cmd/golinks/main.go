@@ -18,7 +18,7 @@ import (
 func main() {
 	pflag.String("addr", ":80", "Default port binding")
 	pflag.Bool("adm", false, "Allow admin-level requests")
-	pflag.String("version", "1.1", "Version string")
+	pflag.String("version", "1.2", "Version string")
 	pflag.String("backend", "leveldb", "Backend store to use. 'leveldb' and 'firestore' currently supported.")
 	pflag.String("data", "data", "The location of the leveldb data directory")
 	pflag.String("project", "", "The GCP project to use for the firestore backend. Will attempt to use application default creds if not defined.")

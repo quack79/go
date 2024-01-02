@@ -13,7 +13,6 @@ require (
 )
 
 require (
-	github.com/a-urth/go-bindata v0.0.0-20180209162145-df38da164efc // indirect
 	github.com/fsnotify/fsnotify v1.4.7 // indirect
 	github.com/golang/protobuf v1.3.1 // indirect
 	github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db // indirect

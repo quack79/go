@@ -16,9 +16,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kellegous/go/backend"
-	"github.com/kellegous/go/backend/leveldb"
-	"github.com/kellegous/go/internal"
+	"github.com/quack79/go/backend"
+	"github.com/quack79/go/backend/leveldb"
+	"github.com/quack79/go/internal"
 )
 
 type urlReq struct {

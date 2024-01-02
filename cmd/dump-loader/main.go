@@ -39,7 +39,7 @@ func main() {
 	c := config{}
 	pflag.StringVar(&c.proto, "protocol", "https", "protocol to use. Only HTTP or HTTPS supported")
 	pflag.StringVar(&c.host, "host", "localhost", "host to post data to")
-	pflag.StringVar(&c.port, "port", "8067", "port on host to talk to")
+	pflag.StringVar(&c.port, "port", "80", "port on host to talk to")
 	pflag.StringVar(&c.dumpFile, "file", "", "dump file to load from")
 	pflag.Parse()
 

@@ -5,8 +5,8 @@ This tool is written in Go and can be easily installed  and started
 with the following commands.
 
 ```
-GOPATH=`pwd` go install github.com/quack79/go
-bin/go
+GOPATH=`pwd` go install github.com/quack79/golinks
+bin/golinks
 ```
 
 By default, the service will put all of its data in the directory `data` and will

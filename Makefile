@@ -5,25 +5,22 @@ DST = $(patsubst %.scss,%.css,$(patsubst %.ts,%.js,$(subst web/assets,.build/ass
 
 ALL: web/bindata.go
 
-.build/bin/go-bindata:
-	GOPATH=$(shell pwd)/.build go get github.com/a-urth/go-bindata/...
-
 .build/assets:
 	mkdir -p $@
 
 .build/assets/%.css: web/assets/%.scss
-	sass --no-source-map --style=compressed $< $@
+	sass --sourcemap=none --style=compressed $< $@
 
 .build/assets/%.js: web/assets/%.ts
 	$(eval TMP := $(shell mktemp))
-	tsc --out $(TMP) $< 
+	tsc --outFile $(TMP) $< 
 	google-closure-compiler --js $(TMP) --js_output_file $@
 	rm -f $(TMP)
 
 .build/assets/%: web/assets/%
 	cp $< $@
 
-web/bindata.go: .build/bin/go-bindata .build/assets $(DST)
+web/bindata.go: /usr/bin/go-bindata .build/assets $(DST)
 	$< -o $@ -pkg web -prefix .build/assets -nomemcopy .build/assets/...
 
 clean:

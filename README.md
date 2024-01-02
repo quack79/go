@@ -35,3 +35,11 @@ Type `go` and enter the URL.
 
 #### View all go-links
 Type `go/links` and you'll be redirected to a list of all your go-links.
+
+
+## Development
+
+* `npm install -g typescript --force`
+* `npm install -g google-closure-compiler`
+* `npm install -g --save go-bindata`
+* make

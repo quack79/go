@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/quack79/go/internal"
+	"github.com/quack79/golinks/internal"
 )
 
 // Used as an API response, this is a route with its associated shortcut name.

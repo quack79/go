@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/quack79/go/backend"
+	"github.com/quack79/golinks/backend"
 )
 
 type adminHandler struct {

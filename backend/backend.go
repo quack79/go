@@ -3,7 +3,7 @@ package backend
 import (
 	"context"
 
-	"github.com/quack79/go/internal"
+	"github.com/quack79/golinks/internal"
 )
 
 type Backend interface {

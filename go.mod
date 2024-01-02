@@ -1,4 +1,4 @@
-module github.com/quack79/go
+module github.com/quack79/golinks
 
 go 1.13
 

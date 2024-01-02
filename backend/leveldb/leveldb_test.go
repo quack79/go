@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/quack79/go/internal"
+	"github.com/quack79/golinks/internal"
 )
 
 func TestGetPut(t *testing.T) {

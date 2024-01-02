@@ -5,7 +5,7 @@ import (
 	"errors"
 
 	fs "cloud.google.com/go/firestore"
-	"github.com/quack79/go/internal"
+	"github.com/quack79/golinks/internal"
 	"google.golang.org/api/iterator"
 )
 

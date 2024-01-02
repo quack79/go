@@ -5,7 +5,7 @@ import (
 	"time"
 
 	fs "cloud.google.com/go/firestore"
-	"github.com/quack79/go/internal"
+	"github.com/quack79/golinks/internal"
 	"golang.org/x/oauth2/google"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

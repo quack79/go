@@ -12,8 +12,8 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/quack79/go/backend"
-	"github.com/quack79/go/internal"
+	"github.com/quack79/golinks/backend"
+	"github.com/quack79/golinks/internal"
 )
 
 // Serve a bundled asset over HTTP.
